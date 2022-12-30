@@ -1,22 +1,14 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
+import { ContextApp } from '../../context/ContextApp'
 import TitleComponent from './Title'
-import ModalContainer from './ModalContainer'
+
 
 const CreateEditModal = () => {
 
-    const initValuesCat = [{
-        name: "juan"
-    }, {
-        name: "juan"
-    }]
-
-
-    const [mockCategories, setMockCategories] = useState<{ name: string }[]>(initValuesCat)
-
-
+    const {actions} = useContext(ContextApp)
+    
     return (
-        <ModalContainer>
-            <section className="bg-white h-1/2 w-1/2 z-10 p-8 box-border border-2 rounded-lg border-black overflow-auto">
+        <section className="bg-white h-1/2 w-1/2 z-10 p-8 box-border border-2 rounded-lg border-black overflow-auto">
             <TitleComponent title="Create/Edit Note" />
             <form className="flex flex-col w-full mt-4 items-center space-y-2">
                 <div className="flex w-full items-start">
@@ -36,7 +28,7 @@ const CreateEditModal = () => {
                     <p className="w-2/5">Categories:</p>
                     <section className="flex flex-col w-full">
                         <article className="border-2 w-full mb-2 h-1/3 flex flex-col">
-                            {
+                            {/* {
                                 mockCategories.map((categories, index) => {
                                     return (
                                         <div key={index} className="flex items-center">
@@ -51,7 +43,7 @@ const CreateEditModal = () => {
                                         </div>
                                     )
                                 })
-                            }
+                            } */}
                         </article>
                         <section className="flex justify-between space-x-2 items-center">
                             <input
@@ -67,12 +59,8 @@ const CreateEditModal = () => {
                     </section>
                 </div>
             </form>
-
-
-            </section>
-           
-        
-        </ModalContainer>)
+        </section>
+    )
 
 }
 

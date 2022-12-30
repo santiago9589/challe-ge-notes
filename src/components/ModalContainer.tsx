@@ -1,12 +1,12 @@
 interface props {
     children: React.ReactNode
-    // onClose: VoidFunction
+    onClose:VoidFunction
 }
-const ModalContainer = ({ children }: props) => {
+const ModalContainer = ({children,onClose}: props) => {
 
     return (
         <section className="w-screen h-screen absolute top-0 left-0 flex justify-center items-center">
-            <b className="absolute top-0 left-0 w-screen h-screen bg-black opacity-30" />
+            <b onClick={()=>{onClose()}}className="absolute top-0 left-0 w-screen h-screen bg-black opacity-30"/>
                 {children}
         </section>)
 
