@@ -5,7 +5,8 @@ import { NoteActions } from "./noteReducer"
 export interface ContextProps {
     state: {
         notes: Note[]
-        notesArchived:Note[] 
+        notesArchived:Note[]
+        noteSelected:Note
     }
     actions:{
         dispatch: React.Dispatch<NoteActions>

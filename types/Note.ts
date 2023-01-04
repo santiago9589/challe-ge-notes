@@ -7,4 +7,5 @@ export interface Note {
     content:string
     category:Categories[]
     isArchived:boolean
+    Id:string
 }

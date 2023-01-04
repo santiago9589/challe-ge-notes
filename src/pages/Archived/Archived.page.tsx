@@ -13,7 +13,7 @@ const ArchivedPage = () => {
         <>
             <header className="flex justify-start space-x-4 items-center my-2 p-2">
                 <TitleComponent title="Archived Notes" />
-                <Link to="/">Go back to unarchived notes</Link>
+                <Link to="/" className="underline">Go back to unarchived notes</Link>
             </header>
             <section className="bg-white min-w-full h-full grid grid-cols-3x">
                 { state.notesArchived.map((note,index)=>{

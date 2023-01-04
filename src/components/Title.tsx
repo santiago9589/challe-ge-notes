@@ -6,7 +6,7 @@ interface props{
 
 const TitleComponent = ({title}:props) => {
   return (
-    <h2 className='text-2xl text-black uppercase'>{title}</h2>
+    <h2 className='text-5xl text-black uppercase'>{title}</h2>
   )
 }
 

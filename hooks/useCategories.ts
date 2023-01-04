@@ -1,8 +1,8 @@
 import { useState } from "react"
 import {Categories} from "../types/Note"
 
-export const useCategories = ()=>{
-    const [categories,setCaterigories] = useState<Categories[]>([])
+export const useCategories = (categoriesInput:Categories[])=>{
+    const [categories,setCaterigories] = useState<Categories[]>(categoriesInput)
     const [InputValues,setInputValues] = useState<string>("")
 
 

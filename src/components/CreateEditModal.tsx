@@ -6,6 +6,7 @@ import * as Yup from "yup"
 import { Note } from '../../types/Note'
 import { NoteActionKind } from '../../context/noteReducer'
 import {useCategories} from "../../hooks/useCategories"
+import { v4 as uuidv4 } from 'uuid'
 
 interface props {
     onClose:VoidFunction
@@ -13,12 +14,12 @@ interface props {
 
 const CreateEditModal = ({onClose}:props) => {
 
-    const {actions} = useContext(ContextApp)
-    const {categories,setCaterigories,handleCategories,deleteCategories,setInputValues,InputValues} = useCategories()
+    const {actions,state} = useContext(ContextApp)
+    const {categories,setCaterigories,handleCategories,deleteCategories,setInputValues,InputValues} = useCategories(state.noteSelected.category || [])
     
     const initialValues = { 
-        title:"",
-        content:"",
+        title:state.noteSelected.title || "",
+        content:state.noteSelected.content || "",
     }
 
     const validationSchema = Yup.object().shape({
@@ -34,9 +35,9 @@ const CreateEditModal = ({onClose}:props) => {
                 title:values.title,
                 content:values.content,
                 category:categories,
-                isArchived:false
+                isArchived:false,
+                Id: state.noteSelected.Id || uuidv4()
            }
-
            actions.dispatch({
             type:NoteActionKind.CREATE,
             payload:draft

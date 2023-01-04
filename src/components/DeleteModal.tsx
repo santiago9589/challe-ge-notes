@@ -22,7 +22,7 @@ const DeleteModal = ({onClose,note}:props) => {
     }
 
     return (
-            <section className="bg-white h-48 w-1/3 z-10 p-8 box-border border-4 rounded-lg border-black">
+            <section className="bg-white h-48 w-1/3 z-10 p-8 box-border border-2 rounded-lg border-black">
                 <section className="p-2">
                     <p className='text-xl text-center'>Are you sure to delete this note?</p>
                     <section className='flex justify-center items-center mt-4 space-x-2'>

@@ -3,22 +3,28 @@ import { useState } from "react"
 export const useView = () => {
 
     const [isShowCreate, setIsShowCreate] = useState<boolean>(false)
+    const [isShowEdit, setIsShowEdit] = useState<boolean>(false)
     const [isShowDelete, setIsShowDelete] = useState<boolean>(false)
 
     const handleDelete = () => {
-        if (!isShowCreate) {
+        if (!isShowCreate && !isShowEdit) {
             setIsShowDelete((isShowDelete)=>!isShowDelete)
         }
     }
 
     const handleCreate = () => {
-        if (!isShowDelete) {
+        if (!isShowDelete && !isShowEdit) {
             setIsShowCreate((isShowCreate)=>!isShowCreate)
         }
+    }
 
+    const handleEdit = () => {
+        if (!isShowDelete && !isShowCreate) {
+            setIsShowDelete((isShowDelete)=>!isShowDelete)
+        }
     }
 
     return {
-        isShowCreate, isShowDelete, handleCreate, handleDelete
+        isShowCreate, isShowDelete, handleCreate, handleDelete,handleEdit,isShowEdit
     }
 }

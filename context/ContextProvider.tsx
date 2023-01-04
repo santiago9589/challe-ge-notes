@@ -11,9 +11,15 @@ const ContextProvider = ({ children }: props) => {
     const stateInit: initState = {
         notes: [
         ],
-        notesArchived:[
-
-        ]
+        notesArchived: [
+        ],
+        noteSelected: {
+            Id: "",
+            title: "",
+            content: "",
+            category: [],
+            isArchived: false
+        }
     }
 
     const [state, dispatch] = useReducer(noteReducer, stateInit)
