@@ -10,12 +10,6 @@ const ContextProvider = ({ children }: props) => {
 
     const stateInit: initState = {
         notes: [
-            {
-                title:"ffds",
-                content:"dsfsdf",
-                isArchived:false,
-                category:[]
-            }
         ],
         notesArchived:[
 

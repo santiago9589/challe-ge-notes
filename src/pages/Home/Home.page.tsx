@@ -14,6 +14,8 @@ const HomePage = () => {
     const { state} = useContext(ContextApp)
     const {isShowCreate,handleCreate} = useView()
 
+    console.log(state)
+
     return (
         <>
             <header className="flex justify-start space-x-4 items-center my-2 p-2">
@@ -32,7 +34,7 @@ const HomePage = () => {
                 {
                     isShowCreate ? (
                         <ModalContainer onClose={handleCreate}>
-                            <CreateEditModal/>
+                            <CreateEditModal onClose={handleCreate}/>
                         </ModalContainer>
                     ) :
                         (null)

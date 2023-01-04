@@ -1,35 +1,86 @@
-import { useState,useContext } from 'react'
+import { useContext} from 'react'
 import { ContextApp } from '../../context/ContextApp'
 import TitleComponent from './Title'
+import { useFormik } from 'formik'
+import * as Yup from "yup"
+import { Note } from '../../types/Note'
+import { NoteActionKind } from '../../context/noteReducer'
+import {useCategories} from "../../hooks/useCategories"
 
+interface props {
+    onClose:VoidFunction
+}
 
-const CreateEditModal = () => {
+const CreateEditModal = ({onClose}:props) => {
 
     const {actions} = useContext(ContextApp)
+    const {categories,setCaterigories,handleCategories,deleteCategories,setInputValues,InputValues} = useCategories()
     
+    const initialValues = { 
+        title:"",
+        content:"",
+    }
+
+    const validationSchema = Yup.object().shape({
+        title:Yup.string().required(),
+        content:Yup.string().required(),
+    })
+    
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit:(values)=>{
+           const draft:Note = {
+                title:values.title,
+                content:values.content,
+                category:categories,
+                isArchived:false
+           }
+
+           actions.dispatch({
+            type:NoteActionKind.CREATE,
+            payload:draft
+           })
+
+           handleReset(values)
+           setCaterigories([])
+           onClose()
+        }
+    })
+
+    const {handleChange,handleSubmit,values,errors,touched,handleReset} = formik
+
     return (
-        <section className="bg-white h-1/2 w-1/2 z-10 p-8 box-border border-2 rounded-lg border-black overflow-auto">
+        <section className="bg-white h-1/2 w-1/2 z-10 p-8 box-border border-2 rounded-lg border-black overflow-y-auto">
             <TitleComponent title="Create/Edit Note" />
-            <form className="flex flex-col w-full mt-4 items-center space-y-2">
-                <div className="flex w-full items-start">
+            <form className="flex flex-col w-full mt-4 items-center space-y-2" onSubmit={handleSubmit}>
+                <div className="flex flex-col w-full items-start">
                     <label className="w-2/5">Title:</label>
                     <input
                         className="w-full p-2  border-2"
                         type="text"
+                        name="title"
+                        onChange={handleChange}
+                        value={values.title}
                     />
+                    { errors.title && touched.title && (<section>{errors.title}</section>)}
                 </div>
-                <div className="flex w-full items-start">
+                <div className="flex flex-col w-full items-start">
                     <label className="w-2/5">Content:</label>
                     <textarea
                         className="w-full p-2  border-2"
+                        name="content"
+                        onChange={handleChange}
+                        value={values.content}
                     />
+                    { errors.content && touched.content && (<section>{errors.content}</section>)}
                 </div>
-                <div className="flex w-full items-start">
+                <div className="flex flex-col w-full items-start">
                     <p className="w-2/5">Categories:</p>
                     <section className="flex flex-col w-full">
                         <article className="border-2 w-full mb-2 h-1/3 flex flex-col">
-                            {/* {
-                                mockCategories.map((categories, index) => {
+                            {
+                                categories.map((categories, index) => {
                                     return (
                                         <div key={index} className="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -37,24 +88,27 @@ const CreateEditModal = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
                                             </svg>
                                             <span className="pr-2 pl-2">{categories.name}</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <svg onClick={()=>deleteCategories(categories)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         </div>
                                     )
                                 })
-                            } */}
+                            }
                         </article>
                         <section className="flex justify-between space-x-2 items-center">
                             <input
                                 className="w-full p-2  border-2"
                                 type="text"
+                                name="categories"
+                                value={InputValues}
+                                onChange={(e)=>{setInputValues(e.target.value)}}
                             />
-                            <button className="bg-blue-200 p-2 w-1/4 shadow-blue-400">Add</button>
+                            <button  type="button" onClick={()=>handleCategories()}className="bg-blue-200 p-2 w-1/4 shadow-blue-400">Add</button>
                         </section>
                         <section className="flex justify-center items-center space-x-2 mt-2">
-                            <button className="bg-green-200 p-2 w-full shadow-green-400">Save</button>
-                            <button className="bg-red-200 p-2 w-full shadow-red-400">Cancel</button>
+                            <button type="submit" disabled={(errors.content || errors.title || !categories.length) ? true : false}  className="bg-green-200 p-2 w-full shadow-green-400 disabled:opacity-40">Save</button>
+                            <button  type="button" onClick={()=>onClose()} className="bg-red-200 p-2 w-full shadow-red-400">Cancel</button>
                         </section>
                     </section>
                 </div>

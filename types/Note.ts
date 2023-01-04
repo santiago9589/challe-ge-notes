@@ -1,6 +1,10 @@
+export interface Categories{
+    name:string
+}
+
 export interface Note {
     title:string
     content:string
-    category:string[]
+    category:Categories[]
     isArchived:boolean
 }
