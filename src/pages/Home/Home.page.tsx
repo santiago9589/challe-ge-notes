@@ -12,7 +12,7 @@ import { useView } from "../../../hooks/useView"
 const HomePage = () => {
 
     const { state } = useContext(ContextApp)
-    const { isShowCreate, handleCreate, isShowEdit, handleEdit } = useView()
+    const { isShowCreate, handleCreate } = useView()
 
 
     return (
@@ -34,15 +34,6 @@ const HomePage = () => {
                     isShowCreate ? (
                         <ModalContainer onClose={handleCreate}>
                             <CreateEditModal onClose={handleCreate} />
-                        </ModalContainer>
-                    ) :
-                        (null)
-                }
-
-                {
-                    isShowEdit ? (
-                        <ModalContainer onClose={handleEdit}>
-                            <CreateEditModal onClose={handleEdit} />
                         </ModalContainer>
                     ) :
                         (null)

@@ -5,6 +5,7 @@ import DeleteModal from "./DeleteModal"
 import ModalContainer from "./ModalContainer"
 import { useContext } from "react"
 import { NoteActionKind } from "../../context/noteReducer"
+import CreateEditModal from "./CreateEditModal"
 
 
 interface props {
@@ -14,7 +15,7 @@ interface props {
 const CardComponent = ({ note }: props) => {
 
     const { actions } = useContext(ContextApp)
-    const { isShowDelete, handleDelete } = useView()
+    const { isShowDelete, handleDelete, handleEdit, isShowEdit } = useView()
 
 
     return (
@@ -25,7 +26,7 @@ const CardComponent = ({ note }: props) => {
                     <h4>{note.content}</h4>
                     <h5>{note.Id}</h5>
                 </section>
-                <section className="absolute bottom-0 right-0 flex p-2 ">
+                <section className="absolute top-0 right-0 flex p-2 ">
                     <section >
                         {
                             note.isArchived ? (
@@ -54,7 +55,14 @@ const CardComponent = ({ note }: props) => {
                             )
                         }
                     </section>
-                    <section className=" text-fuchsia-500">
+                    <section onClick={() => {
+                        actions.dispatch({
+                            type: NoteActionKind.START_EDIT,
+                            payload: note
+                        })
+                        handleEdit()
+
+                    }} className=" text-fuchsia-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                         </svg>
@@ -72,6 +80,14 @@ const CardComponent = ({ note }: props) => {
                         <ModalContainer onClose={handleDelete}>
                             <DeleteModal onClose={handleDelete} note={note} />
                         </ModalContainer>) :
+                        (null)
+                }
+                {
+                    isShowEdit ? (
+                        <ModalContainer onClose={handleEdit}>
+                            <CreateEditModal onClose={handleEdit} />
+                        </ModalContainer>
+                    ) :
                         (null)
                 }
             </>

@@ -20,7 +20,7 @@ export const useView = () => {
 
     const handleEdit = () => {
         if (!isShowDelete && !isShowCreate) {
-            setIsShowDelete((isShowDelete)=>!isShowDelete)
+            setIsShowEdit((isShowEdit)=>!isShowEdit)
         }
     }
 
