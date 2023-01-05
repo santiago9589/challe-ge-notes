@@ -1,43 +1,67 @@
-import TitleComponent from "../../components/Title"
 import { useContext } from "react"
 import CardComponent from "../../components/CardComponent"
-import { Link } from "react-router-dom"
+
 import CreateEditModal from "../../components/CreateEditModal"
 import { ContextApp } from "../../../context/ContextApp"
 import ModalContainer from "../../components/ModalContainer"
 import { useView } from "../../../hooks/useView"
+import HeaderComponent from "../../components/headerComponent"
+import { AnimatePresence, motion } from "framer-motion"
+import ButtonNavigate from "../../components/ButtonNavigate"
+import GridComponent from "../../components/GridComponent"
 
 const HomePage = () => {
 
     const { state } = useContext(ContextApp)
     const { isShowCreate, handleCreate } = useView()
 
+    const variantsButton = {
+        Hover: { scale: 1.1 },
+        Tap: {
+            scale: 0.9, transition: {
+                duration: 0.4
+            }
+        }
+    }
 
     return (
         <>
-            <header className="flex justify-start space-x-4 items-center my-2 p-2">
-                <TitleComponent title="my notes"/>
-                <button
-                     onClick={() => handleCreate()} className="bg-slate-200 p-2 rounded-lg shadow-lg shadow-slate-400">Create Notes</button>
-                <Link to="/archived" className="underline">Archived Notes</Link>
-            </header>
-            <section className="bg-white rounded-lg shadow-slate-400 border-2 min-w-full h-full grid grid-cols-3x overflow-y-auto">
-                {state.notes.map((note, index) => {
-                    return (
-                        <CardComponent key={index} note={note} />
-                    )
-                })}
-            </section>
-            <>
+            <HeaderComponent title="my notes">
+                <section className="flex space-x-3 items-center">
+                    <motion.button
+                        variants={variantsButton}
+                        whileHover="Hover"
+                        whileTap="Tap"
+                        onClick={() => handleCreate()} className="bg-slate-200 p-2 rounded-lg shadow-lg uppercase shadow-slate-400">Create Notes</motion.button>
+                    <ButtonNavigate title="archived routes" route="/archived" />
+                </section>
+            </HeaderComponent>
+            <GridComponent>
                 {
-                    isShowCreate ? (
-                        <ModalContainer onClose={handleCreate}>
-                            <CreateEditModal onClose={handleCreate} />
-                        </ModalContainer>
-                    ) :
-                        (null)
+                    state.notes ?
+                        (<>
+                            {state.notes.map((note, index) => {
+                                return (
+                                    <CardComponent key={index} note={note} />
+                                )
+                            })}
+                        </>) : (null)
                 }
-            </>
+
+            </GridComponent>
+                <AnimatePresence>
+                    {
+                        isShowCreate ? (
+                            <ModalContainer onClose={handleCreate}>
+                                <CreateEditModal onClose={handleCreate} />
+                            </ModalContainer>
+
+
+                        ) :
+                            (null)
+                    }
+
+                </AnimatePresence>
         </>
     )
 }

@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-
-    html {
-        @apply overscroll-none
-    }
-
     body {
-        @apply bg-blue-50 m-0 
+        @apply bg-blue-50  
     }
-    
+}
+
+@layer components{
+    .containerCards{
+        @apply bg-white rounded-lg shadow-slate-400 border-2 min-w-full h-full grid grid-cols-3x overflow-y-auto
+    }
 }

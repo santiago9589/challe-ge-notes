@@ -1,27 +1,27 @@
-import TitleComponent from "../../components/Title"
-import {useContext, useState} from "react"
+import { useContext } from "react"
 import CardComponent from "../../components/CardComponent"
-import {Note} from "../../../types/Note"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { ContextApp } from "../../../context/ContextApp"
+import HeaderComponent from "../../components/headerComponent"
+import ButtonNavigate from "../../components/ButtonNavigate"
+import GridComponent from "../../components/GridComponent"
 
 const ArchivedPage = () => {
 
-    const {state} = useContext(ContextApp)
+    const { state } = useContext(ContextApp)
 
     return (
         <>
-            <header className="flex justify-start space-x-4 items-center my-2 p-2">
-                <TitleComponent title="Archived Notes" />
-                <Link to="/" className="underline">Go back to unarchived notes</Link>
-            </header>
-            <section className="bg-white min-w-full h-full grid grid-cols-3x">
-                { state.notesArchived.map((note,index)=>{
+            <HeaderComponent title="Archived Notes">
+                <ButtonNavigate title="Go back to unarchived notes" route="/" />
+            </HeaderComponent>
+            <GridComponent>
+                {state.notesArchived.map((note, index) => {
                     return (
-                        <CardComponent key={index} note={note}/>
-                    ) 
+                        <CardComponent key={index} note={note} />
+                    )
                 })}
-            </section>
+            </GridComponent>
         </>
     )
 }
