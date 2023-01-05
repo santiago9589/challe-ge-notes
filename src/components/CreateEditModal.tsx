@@ -59,7 +59,7 @@ const CreateEditModal = ({ onClose }: props) => {
     const { handleChange, handleSubmit, values, errors, touched, handleReset } = formik
 
     return (
-        <section className="bg-white h-1/2 w-1/2 z-10 p-8 box-border border-2 rounded-lg border-black overflow-y-auto">
+        <section className="bg-white h-1/2 w-1/2 z-20 p-8 box-border border-2 rounded-lg border-black overflow-y-auto">
             <TitleComponent title="Create/Edit Note" />
             <form className="flex flex-col w-full mt-4 items-center space-y-2" onSubmit={handleSubmit}>
                 <div className="flex flex-col w-full items-start">

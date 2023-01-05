@@ -10,6 +10,113 @@ const ContextProvider = ({ children }: props) => {
 
     const stateInit: initState = {
         notes: [
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },{
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },{
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },{
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },
+            {
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },{
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            },{
+                Id: "sdfsdfsd",
+                title: "sdfdsf",
+                content: "sfdsf",
+                category: [{name:"fdsfsdf"}],
+                isArchived: false
+            }
         ],
         notesArchived: [
         ],
