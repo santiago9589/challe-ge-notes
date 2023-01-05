@@ -21,9 +21,6 @@ const CardComponent = ({ note }: props) => {
 
     return (
         <>
-            <motion.div initial={{ opacity: 0, scale: 0.5,zIndex:0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}>
                 <article className="m-2 border-2 border-black p-2 relative flex justify-between rounded-lg bg-blue-100">
                     <section>
                         <h3 className="text-2xl font-mono">{note.title}</h3>
@@ -96,7 +93,7 @@ const CardComponent = ({ note }: props) => {
                             (null)
                     }
                 </>
-            </motion.div>
+          
         </>
     )
 }

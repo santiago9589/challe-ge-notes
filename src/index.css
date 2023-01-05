@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply bg-blue-50 m-0
+
+    html {
+        @apply overscroll-none
     }
+
+    body {
+        @apply bg-blue-50 m-0 
+    }
+    
 }

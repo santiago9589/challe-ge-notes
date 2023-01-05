@@ -6,7 +6,7 @@ import CreateEditModal from "../../components/CreateEditModal"
 import { ContextApp } from "../../../context/ContextApp"
 import ModalContainer from "../../components/ModalContainer"
 import { useView } from "../../../hooks/useView"
-import { motion } from "framer-motion"
+
 
 
 
@@ -20,17 +20,11 @@ const HomePage = () => {
         <>
             <header className="flex justify-start space-x-4 items-center my-2 p-2">
                 <TitleComponent title="my notes" />
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                />
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                     onClick={() => handleCreate()} className="bg-slate-200 p-2 rounded-lg shadow-lg shadow-slate-400">Create Notes</motion.button>
+                <button
+                     onClick={() => handleCreate()} className="bg-slate-200 p-2 rounded-lg shadow-lg shadow-slate-400">Create Notes</button>
                 <Link to="/archived" className="underline">Archived Notes</Link>
             </header>
-            <section className="bg-white rounded-lg shadow-slate-400 border-2 min-w-full h-full grid grid-cols-3x">
+            <section className="bg-white rounded-lg shadow-slate-400 border-2 min-w-full h-full grid grid-cols-3x overflow-y-auto">
                 {state.notes.map((note, index) => {
                     return (
                         <CardComponent key={index} note={note} />

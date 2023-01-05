@@ -6,7 +6,7 @@ import ContextProvider from "../context/ContextProvider"
 function App() {
 
   return (
-    <main className="container m-auto">
+    <main className="container m-auto h-full ">
       <ContextProvider>
         <BrowserRouter>
           <Routes>
