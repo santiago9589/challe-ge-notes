@@ -15,7 +15,7 @@ const HomePage = () => {
     const { state } = useContext(ContextApp)
     const { isShowCreate, handleCreate } = useView()
 
-<<<<<<< HEAD
+
     const variantsButton = {
         Hover: { scale: 1.1 },
         Tap: {
@@ -24,9 +24,6 @@ const HomePage = () => {
             }
         }
     }
-
-=======
->>>>>>> 6191183 (update files)
     return (
         <>
             <HeaderComponent title="my notes">
