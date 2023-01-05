@@ -7,9 +7,6 @@ import { ContextApp } from "../../../context/ContextApp"
 import ModalContainer from "../../components/ModalContainer"
 import { useView } from "../../../hooks/useView"
 
-
-
-
 const HomePage = () => {
 
     const { state } = useContext(ContextApp)
@@ -19,7 +16,7 @@ const HomePage = () => {
     return (
         <>
             <header className="flex justify-start space-x-4 items-center my-2 p-2">
-                <TitleComponent title="my notes" />
+                <TitleComponent title="my notes"/>
                 <button
                      onClick={() => handleCreate()} className="bg-slate-200 p-2 rounded-lg shadow-lg shadow-slate-400">Create Notes</button>
                 <Link to="/archived" className="underline">Archived Notes</Link>
