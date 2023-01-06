@@ -12,4 +12,10 @@
     .containerCards{
         @apply bg-white rounded-lg shadow-slate-400 border-2 min-w-full h-full grid grid-cols-3x overflow-y-auto
     }
+    .buttonCancel{
+        @apply bg-red-200 p-2 w-full shadow-red-400 cursor-pointer rounded-lg
+    }
+    .buttonOk{
+        @apply bg-green-200 p-2 w-full shadow-green-400 cursor-pointer rounded-lg
+    }
 }

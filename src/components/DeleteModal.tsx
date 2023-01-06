@@ -21,12 +21,12 @@ const DeleteModal = ({onClose}:props) => {
     }
 
     return (
-            <section className="bg-white h-48 w-1/3 z-20 p-8 box-border border-2 rounded-lg border-black">
+            <section className="w-full   bg-white h-48 sm:w-1/3 z-20 p-8 box-border border-2 rounded-lg border-black">
                 <section className="p-2">
                     <p className='text-xl text-center'>Are you sure to delete this note?</p>
                     <section className='flex justify-center items-center mt-4 space-x-2'>
-                        <button onClick={()=>handleDelete()}className="bg-green-200 p-2 w-full shadow-green-400">Confirm</button>
-                        <button onClick={()=>onClose()} className="bg-red-200 p-2 w-full shadow-red-400">Cancel</button>
+                        <button onClick={()=>handleDelete()}className="buttonOk">Confirm</button>
+                        <button onClick={()=>onClose()} className="buttonCancel">Cancel</button>
                     </section>
                 </section>
             </section>

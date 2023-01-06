@@ -17,7 +17,7 @@ const HomePage = () => {
     return (
         <>
             <HeaderComponent title="my notes">
-                <section className="flex flex-col sm:flex-row items-start sm:items-center">
+                <section className="flex items-start justify-around space-x-3">
                     <motion.button
                         variants={variantsButton}
                         whileHover="Hover"

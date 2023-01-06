@@ -16,7 +16,7 @@ const HeaderComponent = ({ children, title }: props) => {
                     animate={"visible"}
                     exit={"exit"}
                     variants={head}
-                className="flex justify-between space-x-4 items-center my-2 p-2">
+                className="flex flex-col space-y-2  sm:flex-row justify-center sm:justify-between space-x-4 items-center my-2 p-2">
                 <TitleComponent title={title} />
                 {children}
             </motion.header>

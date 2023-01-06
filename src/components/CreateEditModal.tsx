@@ -7,10 +7,15 @@ import { Note } from '../../types/Note'
 import { NoteActionKind } from '../../context/noteReducer'
 import { useCategories } from "../../hooks/useCategories"
 import { v4 as uuidv4 } from 'uuid'
+import { variantsButton } from "../../motion/variants"
+import { motion } from "framer-motion"
 
 interface props {
     onClose: VoidFunction
 }
+
+
+
 
 const CreateEditModal = ({ onClose }: props) => {
 
@@ -112,11 +117,22 @@ const CreateEditModal = ({ onClose }: props) => {
                                 value={InputValues}
                                 onChange={(e) => { setInputValues(e.target.value) }}
                             />
-                            <button type="button" onClick={() => handleCategories()} className="bg-blue-200 p-2 w-1/4 shadow-blue-400">Add</button>
+                            <motion.button
+                                whileHover="Hover"
+                                whileTap="Tap"
+                                variants={variantsButton} type="button" onClick={() => handleCategories()} className="bg-blue-200 p-2 w-1/4 shadow-blue-400 cursor-pointer rounded-lg">Add</motion.button>
                         </section>
                         <section className="flex justify-center items-center space-x-2 mt-2">
-                            <button type="submit" disabled={(errors.content || errors.title || !categories.length) ? true : false} className="bg-green-200 p-2 w-full shadow-green-400 disabled:opacity-40">Save</button>
-                            <button type="button" onClick={() => onClose()} className="bg-red-200 p-2 w-full shadow-red-400">Cancel</button>
+                            <motion.button
+                                whileHover="Hover"
+                                whileTap="Tap"
+                                variants={variantsButton}
+                                type="submit" disabled={(errors.content || errors.title || !categories.length) ? true : false} className="buttonOk disabled:opacity-40 disabled:cursor-not-allowed">Save</motion.button>
+                            <motion.button
+                                whileHover="Hover"
+                                whileTap="Tap"
+                                variants={variantsButton}
+                                type="button" onClick={() => onClose()} className="buttonCancel">Cancel</motion.button>
                         </section>
                     </section>
                 </div>

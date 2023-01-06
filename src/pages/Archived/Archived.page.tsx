@@ -12,7 +12,7 @@ const ArchivedPage = () => {
     return (
         <>
             <HeaderComponent title="Archived Notes">
-                <ButtonNavigate title="Go back to unarchived notes" route="/" />
+                <ButtonNavigate title="Unarchived" route="/" />
             </HeaderComponent>
             <GridComponent>
                 {state.notesArchived.map((note, index) => {
