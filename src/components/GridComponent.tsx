@@ -1,25 +1,11 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import {grid} from "../../motion/variants"
 
 interface props {
   children: React.ReactNode
 }
 
-const grid = {
-  visible: {
-    opacity: 1, y: 0,
-    transition: {
-      duration: 0.4
-    }
-  },
-  hidden: { opacity: 0, y: -2000 },
-  exit: {
-    opacity: 1, y: 2000,
-    transition: {
-      duration: 0.4
-    }
-  }
-}
 
 
 

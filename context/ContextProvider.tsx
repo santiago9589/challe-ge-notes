@@ -10,48 +10,17 @@ const ContextProvider = ({ children }: props) => {
 
     const stateInit: initState = {
         notes: [
-            {
-                Id: "vcbcv",
-                title: "bcvbcvb",
-                content: "vcbcvb",
-                category: [{name:"fdfdsf"}],
-                isArchived: false
-            }, {
-                Id: "vcbcv",
-                title: "bcvbcvb",
-                content: "vcbcvb",
-                category: [{name:"fdfdsf"}],
-                isArchived: false
-            }, {
-                Id: "vcbcv",
-                title: "bcvbcvb",
-                content: "vcbcvb",
-                category: [{name:"fdfdsf"}],
-                isArchived: false
-            }, {
-                Id: "vcbcv",
-                title: "bcvbcvb",
-                content: "vcbcvb",
-                category: [{name:"fdfdsf"}],
-                isArchived: false
-            }, {
-                Id: "vcbcv",
-                title: "bcvbcvb",
-                content: "vcbcvb",
-                category: [{name:"fdfdsf"}],
-                isArchived: false
-            }, {
-                Id: "vcbcv",
-                title: "bcvbcvb",
-                content: "vcbcvb",
-                category: [{name:"fdfdsf"}],
-                isArchived: false
-            },
-            
         ],
         notesArchived: [
         ],
         noteSelected: {
+            Id: "",
+            title: "",
+            content: "",
+            category: [],
+            isArchived: false
+        },
+        noteToDelete: {
             Id: "",
             title: "",
             content: "",

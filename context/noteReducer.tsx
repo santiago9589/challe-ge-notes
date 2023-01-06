@@ -3,7 +3,8 @@ import { Note } from "../types/Note";
 export enum NoteActionKind {
     CREATE = "CREATE",
     ARCHIVED = "ARCHIVED",
-    DELETE = "DELETE",
+    START_DELETE = "START_DELETE",
+    FINISH_DELETE = "FINISH_DELETE",
     UNARCHIVED = "UNARCHIVED",
     START_EDIT = "START_EDIT",
     FINISH_EDIT = "FINISH_EDIT"
@@ -19,7 +20,9 @@ export interface initState {
     notes: Note[]
     notesArchived: Note[]
     noteSelected: Note
+    noteToDelete:Note
 }
+
 
 
 export const noteReducer = (state: initState, actions: NoteActions) => {
@@ -59,7 +62,14 @@ export const noteReducer = (state: initState, actions: NoteActions) => {
             }
         }
 
-        case NoteActionKind.DELETE: {
+        case NoteActionKind.START_DELETE: {
+            return {
+                ...state,
+                noteToDelete:actions.payload
+            }
+        }
+
+        case NoteActionKind.FINISH_DELETE: {
             const draftNote = new Set(state.notes)
             const draftArchived = new Set(state.notesArchived)
 

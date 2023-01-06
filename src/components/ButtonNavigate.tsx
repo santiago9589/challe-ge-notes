@@ -1,15 +1,6 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from "framer-motion"
-
-const variantsButton = {
-    Hover: { scale: 1.1 },
-    Tap: {
-        scale: 0.9, transition: {
-            duration: 0.4
-        }
-    }
-}
+import {variantsButton} from "../../motion/variants"
 
 interface props{
     title:string

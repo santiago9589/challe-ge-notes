@@ -1,27 +1,13 @@
 import React from 'react'
 import TitleComponent from './Title'
 import { motion} from "framer-motion"
+import {head} from "../../motion/variants"
 
 interface props {
     children: React.ReactNode
     title: string
 }
 
-const head = {
-    visible: {
-        opacity: 1, y: 0,
-        transition: {
-            duration: 0.3
-        }
-    },
-    hidden: { opacity: 0, y: -600 },
-    exit:{
-        opacity: 1, x: 2000,
-        transition: {
-            duration: 0.3
-        }
-    }
-}
 
 const HeaderComponent = ({ children, title }: props) => {
     return (

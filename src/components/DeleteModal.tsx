@@ -1,22 +1,21 @@
 import { ContextApp } from "../../context/ContextApp"
 import {useContext} from "react"
-import { Note } from "../../types/Note"
 import { NoteActionKind } from "../../context/noteReducer"
 
 
 interface props {
     onClose:VoidFunction
-    note:Note
 }
 
-const DeleteModal = ({onClose,note}:props) => {
+const DeleteModal = ({onClose}:props) => {
 
-    const {actions} = useContext(ContextApp)
-
+    const {actions,state} = useContext(ContextApp)
+    
     const handleDelete = ()=>{
+        if(!state.noteToDelete) return
         actions.dispatch({
-            type:NoteActionKind.DELETE,
-            payload:note
+            type:NoteActionKind.FINISH_DELETE,
+            payload:state.noteToDelete
         })
         onClose()
     }

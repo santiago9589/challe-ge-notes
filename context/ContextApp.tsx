@@ -1,13 +1,9 @@
 import { createContext } from "react"
 import { Note } from "../types/Note"
-import { NoteActions } from "./noteReducer"
+import { initState, NoteActions } from "./noteReducer"
 
 export interface ContextProps {
-    state: {
-        notes: Note[]
-        notesArchived:Note[]
-        noteSelected:Note
-    }
+    state : initState 
     actions:{
         dispatch: React.Dispatch<NoteActions>
     }
