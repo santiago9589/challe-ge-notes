@@ -1,3 +1,4 @@
+import React from "react"
 import { useContext } from 'react'
 import { ContextApp } from '../../context/ContextApp'
 import TitleComponent from './Title'
@@ -75,6 +76,7 @@ const CreateEditModal = ({ onClose }: props) => {
                         name="title"
                         onChange={handleChange}
                         value={values.title}
+                        placeholder="new title"
                     />
                     {errors.title && touched.title && (<section>{errors.title}</section>)}
                 </div>
@@ -85,13 +87,14 @@ const CreateEditModal = ({ onClose }: props) => {
                         name="content"
                         onChange={handleChange}
                         value={values.content}
+                        placeholder="new content"
                     />
                     {errors.content && touched.content && (<section>{errors.content}</section>)}
                 </div>
                 <div className="flex flex-col w-full items-start">
                     <p className="w-2/5">Categories:</p>
                     <section className="flex flex-col w-full">
-                        <article className="border-2 w-full mb-2 h-1/3 flex flex-col">
+                        <article className="border-2 w-full mb-2 h-1/3 flex flex-col" data-testid="categories-article">
                             {
                                 categories.map((categories, index) => {
                                     return (
@@ -100,7 +103,7 @@ const CreateEditModal = ({ onClose }: props) => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
                                             </svg>
-                                            <span className="pr-2 pl-2">{categories.name}</span>
+                                            <span className="pr-2 pl-2" data-testid={`category ${index}`}>{categories.name}</span>
                                             <svg onClick={() => deleteCategories(categories)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg>
@@ -115,6 +118,7 @@ const CreateEditModal = ({ onClose }: props) => {
                                 type="text"
                                 name="categories"
                                 value={InputValues}
+                                placeholder="new category"
                                 onChange={(e) => { setInputValues(e.target.value) }}
                             />
                             <motion.button

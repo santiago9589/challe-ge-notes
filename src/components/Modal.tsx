@@ -18,7 +18,8 @@ const Modal = ({ showModal, children }: props) => {
                         animate={"visible"}
                         exit={"hidden"}
                         variants={animationModal}
-                        className='modal'>
+                        className='modal'
+                        data-testid="modal">
                         {children}
                     </motion.section>
                 )

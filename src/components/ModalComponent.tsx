@@ -4,6 +4,7 @@ import { ModalActionKind } from '../../context/noteModal'
 import CreateEditModal from './CreateEditModal'
 import DeleteModal from './DeleteModal'
 import Modal from './Modal'
+import React from "react"
 
 const ModalComponent = () => {
 

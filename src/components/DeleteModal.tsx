@@ -1,3 +1,4 @@
+import React from "react"
 import { ContextApp } from "../../context/ContextApp"
 import {useContext} from "react"
 import { NoteActionKind } from "../../context/noteReducer"
