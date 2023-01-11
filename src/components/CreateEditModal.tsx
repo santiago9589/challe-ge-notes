@@ -10,6 +10,9 @@ import { useCategories } from "../../hooks/useCategories"
 import { v4 as uuidv4 } from 'uuid'
 import { variantsButton } from "../../motion/variants"
 import { motion } from "framer-motion"
+import InputComponent from "./inputComponent"
+import ButtonComponent from "./ButtonComponent"
+import ContainerInput from "./ContainerInput"
 
 interface props {
     onClose: VoidFunction
@@ -68,19 +71,19 @@ const CreateEditModal = ({ onClose }: props) => {
         <section className="bg-white w-full h-1/2 sm:w-1/2 z-50 p-8 box-border border-2 rounded-lg border-black overflow-y-auto">
             <TitleComponent title="Create/Edit Note" />
             <form className="flex flex-col w-full mt-4 items-center space-y-2" onSubmit={handleSubmit}>
-                <div className="flex flex-col w-full items-start">
-                    <label className="w-2/5">Title:</label>
-                    <input
-                        className="w-full p-2  border-2"
+                <ContainerInput>
+                    <InputComponent
+                        label="Title"
                         type="text"
                         name="title"
                         onChange={handleChange}
                         value={values.title}
                         placeholder="new title"
+                        error={errors.title!}
+                        touched={touched.title!}
                     />
-                    {errors.title && touched.title && (<section>{errors.title}</section>)}
-                </div>
-                <div className="flex flex-col w-full items-start">
+                </ContainerInput>
+                <ContainerInput>
                     <label className="w-2/5">Content:</label>
                     <textarea
                         className="w-full p-2  border-2"
@@ -90,8 +93,8 @@ const CreateEditModal = ({ onClose }: props) => {
                         placeholder="new content"
                     />
                     {errors.content && touched.content && (<section>{errors.content}</section>)}
-                </div>
-                <div className="flex flex-col w-full items-start">
+                </ContainerInput>
+                <ContainerInput>
                     <p className="w-2/5">Categories:</p>
                     <section className="flex flex-col w-full">
                         <article className="border-2 w-full mb-2 h-1/3 flex flex-col" data-testid="categories-article">
@@ -113,33 +116,38 @@ const CreateEditModal = ({ onClose }: props) => {
                             }
                         </article>
                         <section className="flex justify-between space-x-2 items-center">
-                            <input
-                                className="w-full p-2  border-2"
+                            <InputComponent
                                 type="text"
                                 name="categories"
                                 value={InputValues}
                                 placeholder="new category"
                                 onChange={(e) => { setInputValues(e.target.value) }}
                             />
-                            <motion.button
-                                whileHover="Hover"
-                                whileTap="Tap"
-                                variants={variantsButton} type="button" onClick={() => handleCategories()} className="bg-blue-200 p-2 w-1/4 shadow-blue-400 cursor-pointer rounded-lg">Add</motion.button>
+                            <ButtonComponent
+                                type="button"
+                                disabled={false}
+                                className="bg-blue-200 p-2 w-1/4 shadow-blue-400 cursor-pointer rounded-lg"
+                                onClick={() => handleCategories()}
+                                name="Add"
+                            />
                         </section>
                         <section className="flex justify-center items-center space-x-2 mt-2">
-                            <motion.button
-                                whileHover="Hover"
-                                whileTap="Tap"
-                                variants={variantsButton}
-                                type="submit" disabled={(errors.content || errors.title || !categories.length) ? true : false} className="buttonOk disabled:opacity-40 disabled:cursor-not-allowed">Save</motion.button>
-                            <motion.button
-                                whileHover="Hover"
-                                whileTap="Tap"
-                                variants={variantsButton}
-                                type="button" onClick={() => onClose()} className="buttonCancel">Cancel</motion.button>
+                            <ButtonComponent
+                                type="submit"
+                                disabled={!!(errors.content || errors.title || !categories.length)}
+                                className="buttonOk disabled:opacity-40 disabled:cursor-not-allowed"
+                                name="Save"
+                            />
+                            <ButtonComponent
+                                type="button"
+                                disabled={false}
+                                className="buttonCancel"
+                                name="Cancel"
+                                onClick={() => onClose()}
+                            />
                         </section>
                     </section>
-                </div>
+                </ContainerInput>
             </form>
         </section>
     )

@@ -1,5 +1,5 @@
 import React from "react"
-import { screen, render, fireEvent, waitForElementToBeRemoved } from "@testing-library/react"
+import { screen, render, fireEvent, waitForElementToBeRemoved, waitFor, cleanup } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import { ContextApp, ContextProps } from "../../context/ContextApp"
 import ContextProviderModal from "../../context/ContextProviderModal"
@@ -65,6 +65,10 @@ describe("CardComponent", () => {
             }} />
         </Wrapper>)
     })
+    
+    afterEach(()=>{
+        cleanup()
+    })
 
     it("Reenderiza la informacion segun props", () => {
 
@@ -87,20 +91,8 @@ describe("CardComponent", () => {
     it("Cuando le doy click debe cambiar su estado archivado y no se debe poder editar", async() => {
 
         const iconUnArchivedElement = screen.getByTestId("unArchived")
-        // const iconArchivedElement = screen.queryByTestId("Archived")
-        // const iconEditElement = screen.getByTestId("editUnArchived")
-        
-
         fireEvent.click(iconUnArchivedElement)
-
-        
-        // expect(iconUnArchivedElement).not.toBeInTheDocument()
-        // expect(iconArchivedElement).toBeInTheDocument()
         expect(ContextPropsValues.actions.dispatch).toHaveBeenCalledTimes(1)
-
-        // await waitForElementToBeRemoved(()=>{
-        //     expect(iconEditElement).not.toBeInTheDocument()
-        // })
     })
 
     it("Cuando le doy click debe a editar debe disparar", () => {

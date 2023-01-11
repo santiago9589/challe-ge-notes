@@ -1,8 +1,6 @@
 import React from "react"
-import { MemoryRouter } from 'react-router-dom';
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
-import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom"
+import { BrowserRouter} from 'react-router-dom';
+import {render, screen} from "@testing-library/react"
 import HomePage from "../pages/Home/Home.page"
 import ContextProvider from "../../context/ContextProvider"
 import ContextProviderModal from "../../context/ContextProviderModal"
@@ -14,13 +12,13 @@ interface props {
 
 const Wrapper = ({ children }: props) => {
     return (
-        <MemoryRouter>
+        <BrowserRouter>
             <ContextProvider>
                 <ContextProviderModal>
                     {children}
                 </ContextProviderModal>
             </ContextProvider>
-        </MemoryRouter>
+        </BrowserRouter>
     )
 }
 

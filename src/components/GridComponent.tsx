@@ -17,7 +17,9 @@ const GridComponent = ({ children }: props) => {
       animate={"visible"}
       exit={"exit"}
       variants={grid}
-      className="containerCards">
+      className="containerCards"
+      data-testid="containerCards">
+      
       {children}
     </motion.section>
   )

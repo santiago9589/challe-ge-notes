@@ -49,6 +49,7 @@ const CardComponent = ({ note }: props) => {
     return (
         <>
             <motion.article
+                data-testid={`card-${note.Id}`}
                 variants={variantsCard}
                 whileHover="Hover"
                 whileTap="Tap"

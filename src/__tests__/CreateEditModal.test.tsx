@@ -1,5 +1,5 @@
 import React from "react"
-import { screen, render, fireEvent } from "@testing-library/react"
+import { screen, render, fireEvent, waitFor } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import { ContextApp, ContextProps } from "../../context/ContextApp"
 import ContextProviderModal from "../../context/ContextProviderModal"
@@ -85,28 +85,30 @@ describe("CreateEditModal", () => {
 
     })
 
-    it("puedo ingresar informacion", () => {
+    it("puedo ingresar informacion", async () => {
 
         const inputTitleElement = screen.getByPlaceholderText(/new title/i)
         const textContextElement = screen.getByPlaceholderText(/new content/i)
         const inputCategoryElement = screen.getByPlaceholderText(/new category/i)
 
-        fireEvent.change(inputTitleElement, {
-            target: {
-                value: "comprar agua"
-            }
-        })
+        await waitFor(() => {
+            fireEvent.change(inputTitleElement, {
+                target: {
+                    value: "comprar agua"
+                }
+            })
 
-        fireEvent.change(textContextElement, {
-            target: {
-                value: "vender papa"
-            }
-        })
+            fireEvent.change(textContextElement, {
+                target: {
+                    value: "vender papa"
+                }
+            })
 
-        fireEvent.change(inputCategoryElement, {
-            target: {
-                value: "comer torta"
-            }
+            fireEvent.change(inputCategoryElement, {
+                target: {
+                    value: "comer torta"
+                }
+            })
         })
 
         expect(inputTitleElement).toHaveValue("comprar agua")
@@ -115,18 +117,21 @@ describe("CreateEditModal", () => {
 
     })
 
-    it("poder agregar un categoria y se limpia el input", () => {
+    it("poder agregar un categoria y se limpia el input", async () => {
 
         const inputCategoryElement = screen.getByPlaceholderText(/new category/i)
         const buttonAddElement = screen.getByRole("button", { name: /add/i })
 
-        fireEvent.change(inputCategoryElement, {
-            target: {
-                value: "comer torta"
-            }
-        })
+        await waitFor(() => {
 
-        fireEvent.click(buttonAddElement)
+            fireEvent.change(inputCategoryElement, {
+                target: {
+                    value: "comer torta"
+                }
+            })
+
+            fireEvent.click(buttonAddElement)
+        })
 
         expect(screen.getAllByTestId(/category/i).length).toBe(1)
         expect(inputCategoryElement).toHaveValue("")
@@ -134,7 +139,7 @@ describe("CreateEditModal", () => {
 
     })
 
-    it("el boton save de habilita", () => {
+    it("el boton save de habilita", async () => {
 
         const inputTitleElement = screen.getByPlaceholderText(/new title/i)
         const textContextElement = screen.getByPlaceholderText(/new content/i)
@@ -142,35 +147,39 @@ describe("CreateEditModal", () => {
         const buttonAddElement = screen.getByRole("button", { name: /add/i })
         const buttonSaveElement = screen.getByRole("button", { name: /save/i })
 
-        fireEvent.change(inputTitleElement, {
-            target: {
-                value: "comprar agua"
-            }
-        })
+        await waitFor(() => {
+            fireEvent.change(inputTitleElement, {
+                target: {
+                    value: "comprar agua"
+                }
+            })
 
-        fireEvent.change(textContextElement, {
-            target: {
-                value: "vender papa"
-            }
-        })
+            fireEvent.change(textContextElement, {
+                target: {
+                    value: "vender papa"
+                }
+            })
 
-        fireEvent.change(inputCategoryElement, {
-            target: {
-                value: "comer torta"
-            }
-        })
+            fireEvent.change(inputCategoryElement, {
+                target: {
+                    value: "comer torta"
+                }
+            })
 
-        fireEvent.click(buttonAddElement)
+            fireEvent.click(buttonAddElement)
+        })
 
         expect(buttonSaveElement).not.toBeDisabled()
 
     })
 
-    it("el boton cancel llama a la funcion de cierre", () => {
+    it("el boton cancel llama a la funcion de cierre", async() => {
 
         const buttonCancelElement = screen.getByRole("button", { name: /cancel/i })
 
-        fireEvent.click(buttonCancelElement)
+        await waitFor(()=>{
+            fireEvent.click(buttonCancelElement)
+        })
 
         expect(handleClose).toHaveBeenCalledTimes(1)
 

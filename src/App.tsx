@@ -1,11 +1,10 @@
+import React from "react"
 import { Routes, Route } from "react-router-dom"
 import ArchivedPage from "./pages/Archived/Archived.page"
 import HomePage from "./pages/Home/Home.page"
 import ContextProvider from "../context/ContextProvider"
 import { useLocation } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import { useContext } from "react"
-import { ContextModal } from "../context/ContextModal"
 import ModalComponent from "./components/ModalComponent"
 import ContextProviderModal from "../context/ContextProviderModal"
 
