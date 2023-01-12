@@ -125,3 +125,26 @@ export const noteReducer = (state: initState, actions: NoteActions) => {
     }
 }
 
+
+
+
+// const AppMock = () => {
+
+//     const location = useLocation()
+
+//     return (
+//         <main className="container m-auto p-8">
+//             <ContextApp.Provider value={ContextPropsMocks}>
+//                 <ContextProviderModal>
+//                     <ModalComponent />
+//                     <AnimatePresence mode="wait">
+//                         <Routes location={location} key={location.key}>
+//                             <Route path="/" element={<HomePage />} />
+//                             <Route path="/archived" element={<ArchivedPage />} />
+//                         </Routes>
+//                     </AnimatePresence>
+//                 </ContextProviderModal>
+//             </ContextApp.Provider>
+//         </main>
+//     )
+// }
