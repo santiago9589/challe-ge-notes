@@ -3,19 +3,18 @@ import { BrowserRouter } from "react-router-dom"
 import App from "../App"
 import React from "react"
 
+beforeEach(() => {
+    render(<BrowserRouter>
+        <App />
+    </BrowserRouter>)
+})
+
+afterEach(() => {
+    cleanup();
+})
+
 
 describe("App", () => {
-
-    beforeEach(() => {
-        render(<BrowserRouter>
-            <App />
-        </BrowserRouter>)
-    })
-
-    afterEach(() => {
-        cleanup();
-        jest.clearAllMocks();
-    })
 
     it("Reenderiza correctamente", () => {
 
@@ -119,94 +118,20 @@ describe("App", () => {
         await waitFor(() => {
             expect(screen.getAllByTestId(/card-/i).length).toBe(1)
         })
-
-       screen.debug()
     })
 
-    // it("cuando le doy click al buton cambio de pagina", async () => {
-    //     const titleElementNotes = screen.getByText(/my notes/i)
-    //     const archivedElement = screen.getByText(/archived/i)
+    it("cuando le doy click al buton cambio de pagina", async () => {
+        const titleElementNotes = screen.getByText(/my notes/i)
+        const archivedElement = screen.getByText(/archived/i)
 
-    //     fireEvent.click(archivedElement)
+        fireEvent.click(archivedElement)
 
-    //     await waitFor(() => {
-    //         expect(titleElementNotes).not.toBeInTheDocument()
-    //     })
+        await waitFor(() => {
+            expect(titleElementNotes).not.toBeInTheDocument()
+        })
 
-    //     const titleElementArchived = screen.getByText(/archived notes/i)
-    //     expect(titleElementArchived).toBeInTheDocument()
-
-    // })
-
-    it("cuando le doy click a delete debe verse el modal", () => {
-        const createElement = screen.getByText(/create/i)
-        expect(createElement).toBeInTheDocument()
+        const titleElementArchived = screen.getByText(/archived notes/i)
     })
 
-    it("el modal debe permitir confimar", () => {
-
-    })
-
-    it("el modal debe permitir cancelar", () => {
-
-    })
-
-    it("Cuando clickeo edit debe mostrar el formulario para crear con informacion", async () => {
-
-        // const createElement = screen.getByText(/create/i)
-        // let modalElement
-
-        // await waitFor(() => {
-        //     fireEvent.click(createElement)
-        //     modalElement = screen.getByTestId(/modal/i)
-
-        // })
-
-        // expect(modalElement).toBeInTheDocument()
-    })
-
-    it("Cuando le doy save debe modificar la nota", async () => {
-
-        //     const createElement = screen.getByText(/create/i)
-        //     let modalElement
-
-        //     await waitFor(() => {
-        //         fireEvent.click(createElement)
-        //         modalElement = screen.getByTestId(/modal/i)
-        //     })
-
-        //     const buttonAddElement = screen.getByRole("button", { name: /add/i })
-        //     const inputTitleElement = screen.getByPlaceholderText(/new title/i)
-        //     const textContextElement = screen.getByPlaceholderText(/new content/i)
-        //     const inputCategoryElement = screen.getByPlaceholderText(/new category/i)
-        //     const buttonSaveElement = screen.getByRole("button", { name: /save/i })
-
-        //     await waitFor(() => {
-        //         fireEvent.change(inputTitleElement, {
-        //             target: {
-        //                 value: "comprar agua"
-        //             }
-        //         })
-
-        //         fireEvent.change(textContextElement, {
-        //             target: {
-        //                 value: "vender papa"
-        //             }
-        //         })
-
-        //         fireEvent.change(inputCategoryElement, {
-        //             target: {
-        //                 value: "comer torta"
-        //             }
-        //         })
-
-        //         fireEvent.click(buttonAddElement)
-        //         fireEvent.click(buttonSaveElement)
-        //     })
-
-        //     await waitFor(() => {
-        //         expect(screen.getAllByTestId(/card-/i).length).toBe(1)
-        //     })
-    })
-
+      
 })
